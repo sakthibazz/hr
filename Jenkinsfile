@@ -29,10 +29,13 @@ pipeline {
                     }
                 }
             }
-            post {
-                always {
-                    echo "I will always execute this! "
-                }
+        }
+        stage('Proceed to Next Stage') {
+            steps {
+                input(message: 'Do you want to proceed to the next stage?', ok: 'Yes', parameters: [string(name: 'PROCEED', defaultValue: 'No', description: 'Proceed to next stage (Yes/No)')])
+            }
+            when {
+                expression { params.PROCEED == 'Yes' }
             }
         }
         stage ('docker'){
