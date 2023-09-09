@@ -34,8 +34,9 @@ pipeline {
                     echo ‘I will always execute this!’
                 }
             }
-            stage ('docker'){
-                echo "docker stage" }
         }
+        stage ('docker'){
+                echo 'docker stage'
+            }
     }
 }
