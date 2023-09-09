@@ -1,7 +1,8 @@
 pipeline {
     agent any
     tools {
-        jdk 'Java 17' // Use the name you specified in the JDK configuration
+        // Update the tool name to match the one defined in your Jenkins configuration
+        jdk 'Java 17'
     }
 
     stages {
@@ -19,7 +20,11 @@ pipeline {
                     def scannerHome = tool 'SonarScanner' // Configure SonarScanner tool in Jenkins
                     withSonarQubeEnv('hrportal-sonarqube') {
                         sh """
-                            ${scannerHome}/bin/sonar-scanner -Dsonar.host.url=http://172.31.18.169:9091
+                            ${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=hrportal \
+                            -Dsonar.sources=. \
+                            -Dsonar.host.url=http://172.31.18.169:9091 \
+                            -Dsonar.token=squ_5249de2dffe875f8708a43521136bb56228b04be
                         """
                     }
                 }
