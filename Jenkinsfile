@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your GitHub repository
-                git https://github.com/sakthibazz1/hrportal.git
+                git 'https://github.com/sakthibazz1/hrportal.git'
             }
         }
 
