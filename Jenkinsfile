@@ -36,7 +36,9 @@ pipeline {
             }
         }
         stage ('docker'){
+            steps{ 
                 echo 'docker stage'
             }
+        }
     }
 }
