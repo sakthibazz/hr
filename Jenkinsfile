@@ -16,7 +16,7 @@ pipeline {
                     def scannerHome = tool 'SonarScanner' // Configure SonarScanner tool in Jenkins
                     withSonarQubeEnv('hrportal-sonarqube') {
                         sh """
-                            ${scannerHome}/bin/sonar-scanner
+                            ${scannerHome}/bin/sonar-scanner -Dsonar.host.url=http://localhost:9091
                         """
                     }
                 }
