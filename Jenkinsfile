@@ -40,7 +40,7 @@ pipeline {
         }
         stage ('docker'){
             steps{ 
-                echo 'docker stage'
+                sh "docker pull node"
             }
         }
     }
