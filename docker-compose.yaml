@@ -25,3 +25,7 @@ services:
     mem_limit: 1g
     networks:
       - hrportal   # Assign the service to the existing "hrportal" network
+
+networks:
+  hrportal:
+    driver: bridge
