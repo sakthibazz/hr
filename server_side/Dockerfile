@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install dependencies, including nodemon
 RUN npm install -g nodemon
+RUN npm install express --save
 RUN npm install 
 RUN npm install -g node-pre-gyp
 RUN npm rebuild bcrypt --update-binary

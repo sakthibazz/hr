@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install react-scripts --save
+RUN npm install 
 
 # Copy the rest of the app's files to the working directory
 COPY . .
