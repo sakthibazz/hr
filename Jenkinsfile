@@ -35,7 +35,7 @@ pipeline {
         
         stage ('docker'){
             steps{ 
-                sh "echo docker commands can be executed"
+                sh "docker-compose up"
             }
         }
     }
