@@ -4,6 +4,7 @@ import { Button, Table, Container, Row, Col, Card,Pagination } from "react-boots
 import { getAdminPostClientRequirement, getAllAdminePostClientDetails } from "../helper/Helper";
 import { Link } from "react-router-dom";
 import Loader from './Loader';
+import './FontText.css';
 
 const SearchForm = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -68,14 +69,14 @@ const SearchForm = () => {
   };
 
   return (
-    <div>
+    <div className="pt-5 custom-font"> 
       <div style={{ maxWidth: "1500px", margin: "0 auto" }}>
         <Container fluid className="pt-5">
           <Card style={{ marginLeft: "150px" }} className="mt-2 pt-2">
             <Row>
               <Col sm={12} md={12} className="text-center pt-5">
                 <Card.Header> 
-                  <h2>Search Client Details</h2>
+                <h2 className="header-title text-center" style={{ textDecoration: 'underline' }}>Search Client Details</h2>
                 </Card.Header>
                 <Card.Body>
                   <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -93,7 +94,7 @@ const SearchForm = () => {
                         <Col md={4}>
                           <Field
                             type="number"
-                            placeholder="Enter Ticket Number"
+                            placeholder="Enter Req.No"
                             name="Ticket_no"
                             className="form-control"
                           />
@@ -103,8 +104,7 @@ const SearchForm = () => {
                           <Field
                             component="select"
                             name="status"
-                            className="form-control"
-                          >
+                            className="form-control">
                             <option value="">status</option>
                             <option value="Open">Open</option>
                             <option value="Interview">Interview</option>
@@ -118,13 +118,13 @@ const SearchForm = () => {
                       <Row className="pt-3">
                         <Col md={6}>
                           <div>
-                            <label>From Date:</label>
+                            <label>From Date</label>
                             <Field type="date" name="fromDate" className="form-control" />
                           </div>
                         </Col>
                         <Col md={6}>
                           <div>
-                            <label>To Date:</label>
+                            <label>To Date</label>
                             <Field type="date" name="toDate" className="form-control" />
                           </div>
                         </Col>
@@ -147,24 +147,25 @@ const SearchForm = () => {
                 <Table style={{ width: '100%', border: 'none' }} striped hover>
                   <thead>
                     <tr>
-                      <th>Ticket ID</th>
+                    <th>Date</th>
+                      <th>Req.No</th>
                       <th>Client Name</th>
-                      <th>Tech Stack</th>
+                      <th>Job Title</th>
                       <th>Location</th>
                       <th>Status</th>
-                      <th>Date</th>
                       <th>Update</th>
                     </tr>
                   </thead>
                   <tbody>
                     {resultsToDisplay.map((user) => (
                       <tr key={user._id}>
+                        <td>{new Date(user.date).toLocaleDateString("en-GB")}</td>
                         <td>{user.Ticket_no}</td>
                         <td>{user.Client_Name}</td>
                         <td>{user.Tech_stack}</td>
                         <td>{user.Location}</td>
                         <td>{user.status}</td>
-                        <td>{new Date(user.date).toLocaleDateString("en-GB")}</td>
+                        
                         <td>
                           <Link to={`/updateadminpost/${user._id}`}>
                             <Button variant="outline-success">Update</Button>

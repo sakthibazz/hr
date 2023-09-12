@@ -3,6 +3,7 @@ import { Table, Container, Row, Col, Form, Button, Pagination } from "react-boot
 import { getAdminPostbyStatus } from "../helper/Helper";
 import { Link } from "react-router-dom";
 import Loader from './Loader';
+import './FontText.css';
 
 
 const Admindetailsacess = () => {
@@ -77,18 +78,18 @@ const Admindetailsacess = () => {
   }
 
   return (
-    <div className="pt-5">
+    <div className="pt-5 custom-font">
     <div style={{ maxWidth: '1500px', margin: '0 auto' }}> {/* Add custom div with max-width */}
       <Container fluid >
     
           <Row className="mt-3" >
             <Col md={12}>
             <Form onSubmit={handleFormSubmit}>
-                <Form.Group controlId="searchTicketNumber">
-                  <Form.Label><h6>Search by Ticket Number:</h6></Form.Label>
+                <Form.Group>
+                  <Form.Label><h6>Search by Requirement Number</h6></Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter Ticket Number"
+                    placeholder="Enter Req.No"
                     value={ticketSearchTerm}
                     onChange={handleSearchInputChange}
                     style={{ maxWidth: '200px', }}
@@ -96,7 +97,7 @@ const Admindetailsacess = () => {
                 </Form.Group>
             
                 <Button variant="outline-info" onClick={handleTicketSearch} className="mt-2">
-                  Search Ticket
+                  Search
                 </Button>
            
               </Form>
@@ -106,18 +107,18 @@ const Admindetailsacess = () => {
         {resultsToDisplay.length > 0 ? (
           <Row className="mt-2">
             <Col md={12} style={{ marginLeft: '30px' }}>
-              <h3>Aroha Technologies Client Requirement:</h3>
-              <Table   style={{ width: '100%', border: 'none' }} striped hover >
+            <h3 className="header-title">Aroha Technologies Client Requirements</h3>
+            <Table className="custom-font" style={{ width: '100%', border: 'none' }} striped hover>
                 <thead>
                 <tr>
                   <th>Date</th>                
                     <th>Req.No</th>
-                    <th>Client Name</th>
-                    <th>Requirement</th>
+                    <th>Client</th>
+                    <th>Job Title</th>
                     <th>Location</th>
                     <th>Status</th>                                    
-                    <th>View details</th>
-                    <th>Upload  Resumes</th>                                     
+                    <th>Details</th>
+                    <th>Resumes</th>                                     
                   </tr>
                 </thead>
                 <tbody>
