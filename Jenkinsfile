@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'docker-slave'  
+    }
     tools {
         // Update the tool name to match the one defined in your Jenkins configuration
         jdk 'Java 17'
@@ -30,17 +32,10 @@ pipeline {
                 }
             }
         }
-        stage('Proceed to Next Stage') {
-            steps {
-                input(message: 'Do you want to proceed to the next stage?', ok: 'Yes', parameters: [string(name: 'PROCEED', defaultValue: 'No', description: 'Proceed to next stage (Yes/No)')])
-            }
-            when {
-                expression { params.PROCEED == 'Yes' }
-            }
-        }
+        
         stage ('docker'){
             steps{ 
-                sh "docker pull node"
+                sh "echo docker commands can be executed"
             }
         }
     }
