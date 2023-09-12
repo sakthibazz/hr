@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import convertToBase64 from '../helper/Convert';
 import { Adminpost } from '../helper/Helper';
 import { adminPostValidate } from '../helper/Validate';
+import './FontText.css';
 
 const Adminposts = () => {
   const [file, setFile] = useState();
@@ -84,9 +85,9 @@ const Adminposts = () => {
             <Col xs={10} md={10} lg={10} className="text-center py-4">
               <Card className="title py-4 mt-30" >
               <Card.Header className='pt-30'>
-                    <h4 className="text-5xl font-bold">Post New Client Requirement..!</h4>
+                    <h4 className="text-5xl font-bold">Post New Client Requirements..!</h4>
                     <span className="py-4 text-xl w-2/3 text-center text-muted">
-                      Happy to join you!
+                 
                     </span>
                   </Card.Header>
                 <Card.Body>
@@ -116,7 +117,7 @@ const Adminposts = () => {
                         <Form.Control
                           {...formik.getFieldProps('Open_position')}
                           type="number"
-                          placeholder="Open position*"
+                          placeholder="Opening position*"
                           className="w-100 mb-2"
                           required
                         />
@@ -127,7 +128,7 @@ const Adminposts = () => {
                         <Form.Control
                           {...formik.getFieldProps('Yre_of_exp')}
                           type="text"
-                          placeholder="Year of Experience*"
+                          placeholder="Years of Experience*"
                           className="w-100 mb-2"
                           required
                         />
@@ -136,7 +137,7 @@ const Adminposts = () => {
                       <Form.Control
                           {...formik.getFieldProps('Tech_stack')}
                           list="Tech_stack"
-                          placeholder="Tech stack*"
+                          placeholder="Job Title*"
                           className="w-100 mb-2"
                           required
                         />
@@ -206,8 +207,8 @@ const Adminposts = () => {
                         required
                       >
                         <option value="">Mode of Work*</option>
-                        <option value="Work from home">Work from home</option>
-                        <option value="Work from office">Work from office</option>
+                        <option value="Work from home">Work from Home</option>
+                        <option value="Work from office">Work from Office</option>
                         <option value="Hybrid">Hybrid</option>
                       </Form.Select>
                       </Col>
