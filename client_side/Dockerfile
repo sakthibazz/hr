@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:14
+FROM node:14.20.1
 
 # Set the working directory in the container
 WORKDIR /app
@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install react-scripts --save
-RUN npm install --force
+RUN npm install 
 
 # Copy the rest of the app's files to the working directory
 COPY . .
