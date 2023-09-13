@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install -g nodemon
 RUN npm install express --save
 RUN npm install -g node-pre-gyp
-RUN npm install --force
+RUN npm install
 RUN npm rebuild bcrypt --update-binary
 
 
