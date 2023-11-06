@@ -13,8 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install SSH key
+      - name: Create SSH directory
         run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
           echo "$AWS_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $AWS_EC2_HOSTNAME >> ~/.ssh/known_hosts
