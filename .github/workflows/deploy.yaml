@@ -1,8 +1,23 @@
-- name: executing remote ssh commands using ssh key
-  uses: appleboy/ssh-action@v1.0.0
-  with:
-    host: 51.20.78.69
-    username: ubuntu
-    key: ${{ AWS_SSH_PRIVATE_KEY }}
-    port: 22
-    script: /home/ubuntu/deploy-script.sh
+name: Deploy to Remote Server
+
+on:
+  push:
+    branches:
+      - main  # Replace with your desired branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: SSH Remote Command
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 51.20.78.69  # Replace with your actual remote server IP
+          username: ubuntu  # Replace with your remote server username
+          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}  # Reference your private key secret
+          port: 22  # Replace with the SSH port if different
+          script: /home/ubuntu/deploy-script.sh
