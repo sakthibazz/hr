@@ -17,7 +17,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "$AWS_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 655 ~/.ssh/id_rsa
+          chmod 644 ~/.ssh/id_rsa
           ssh-keyscan -H 51.20.78.69 >> ~/.ssh/known_hosts  # Replace <REMOTE_HOST> with the actual host
           chmod 644 ~/.ssh/known_hosts
 
