@@ -2,7 +2,7 @@ version: "3"
 services:
   server:
     build:
-      context: ./server_side  # Path to the server-side app's directory
+      context: ./server_side  # Path to the server-side app's directory.
       dockerfile: Dockerfile
     ports:
       - "8000:8000"   # Map container port to host port
