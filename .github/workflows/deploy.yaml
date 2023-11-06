@@ -3,23 +3,24 @@ name: Deploy to Remote Server
 on:
   push:
     branches:
-      - main  # Replace with your desired branch.
+      - main  # Replace with your desired branch
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04.3
+    runs-on: ubuntu-22.04.03
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Anofuss Remote
-        uses: vacare/anofuss-remote@v1
-        with:
-          host: 51.20.78.69  # Replace with the actual hostname or IP address
-          username: ubuntu # Replace with the actual username
-          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}  # Reference your private key secret
-          #known_hosts: ${{ secrets.KNOWN_HOSTS }}  # Reference your known_hosts file secret
-          command: |
-            # Add the command you want to run on the remote server here
-            /home/ubuntu/deploy-script.sh
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$AWS_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 655 ~/.ssh/id_rsa
+          ssh-keyscan -H 51.20.78.69 >> ~/.ssh/known_hosts  # Replace <REMOTE_HOST> with the actual host
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Deploy to Remote Server
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@51.20.78.69 'bash -s' < deploy-script.sh  # Replace with actual remote user, host, and script path
