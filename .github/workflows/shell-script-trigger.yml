@@ -1,0 +1,24 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main # Change this to your desired branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH key
+        run: |
+          echo "$AWS_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $AWS_EC2_HOSTNAME >> ~/.ssh/known_hosts
+
+      - name: Run deployment script
+        run: |
+          ssh -i ~/.ssh/id_rsa $AWS_EC2_USER@$AWS_EC2_HOSTNAME 'bash -s' < deploy-script.sh
